@@ -33,7 +33,7 @@ Moreover, while listing the "mandatory PiTeX" files, Isambert enumerates:
 Well: the day has come, and the fontloader has now become `blotter`: *the Basic LuaTeX OpenType managER*.
 
 The basic documentation is copied almost verbatim from Isambert's `PiTeX-doc.txt`, save the adoption of the filename extensions `ltm` for *LuaTeX macros*, and `lts` for *LuaTeX scripts*. 
-The required dependencies are Isambert packages [texapi](), [YaX]() and [Gates]().
+The required dependencies are Isambert packages [texapi](https://ctan.org/pkg/texapi), [YaX](https://ctan.org/pkg/yax) and [Gates](https://ctan.org/pkg/gates).
 
 # Bugs and caveats
 
