@@ -1,4 +1,4 @@
-# Blotter Minimal User Guide
+# BLOpenType Minimal User Guide
 
 Fonts (fonts.ltm and fonts.lts)
 ==================================
