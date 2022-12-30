@@ -1,47 +1,37 @@
-# blotter
-Basic LuaTeX OpenType managER
+# blopentype
+Basic LuaTeX OpenType Handler
 
 # Description
 
-In his terse documentation for `PiTeX`, Paul Isambert states:
-
-> What is PiTeX? Originally, it was a set of files I loaded with plain TeX
-to typeset documentation for my packages. But it's not just a few macros
-anymore, but rather a format in progress. The format might never see the
-public light, but if it does, its originality (compared to existing
-format) will be an organization based on the Gates package: everything
-will be highly customizable, not because there are tons of options
-(although that can be the case too), but because big operations are
-divided into gates, i.e. macros with a handle that you can control without
-having to rewrite (nor understand) the big operation you're modifying;
-which big operation also keeps its integrity, because removing or adding
-something is neatly done. It also means that PiTeX can be changed
-piecewise, and made into something that bears little resemblance to the
-original code. In other words, there is nothing private, nothing forbidden.
-For the moment, only sectionning commands and the output routine, plus
-callback management in Lua and \everypar, are written with gates. See
-the Gates documentation for further information.
-
-Moreover, while listing the "mandatory PiTeX" files, Isambert enumerates:
+In his terse documentation for `PiTeX`, Paul Isambert lists, among the "mandatory PiTeX" files, the following:
 
 | file name            | Description  |
 |-|-|
 | fonts.ptx            | Interface for fonts; relies on the next file.    |
-| fonts.ptxlua         | The Lua fontloader; should become independant  some day. |
+| fonts.ptxlua         | The Lua fontloader; should become independant some day. |
 | foundry-settings.lua | Default settings for the fontloader.             |
 
-Well: the day has come, and the fontloader has now become `blotter`: *the Basic LuaTeX OpenType managER*.
+Well: the day has come, and the fontloader has now become `blopentype`: a *Basic LuaTeX OpenType Handler*.
 
-The basic documentation is copied almost verbatim from Isambert's `PiTeX-doc.txt`, save the adoption of the filename extensions `ltm` for *LuaTeX macros*, and `lts` for *LuaTeX scripts*. 
-The required dependencies are Isambert packages [texapi](https://ctan.org/pkg/texapi), [YaX](https://ctan.org/pkg/yax) and [Gates](https://ctan.org/pkg/gates).
+The basic code is copied almost verbatim from Isambert's `PiTeX`, save the adoption of the filename extensions `ltm` for *LuaTeX macros*, `lts` for *LuaTeX scripts*, and `blot-sets.lua` for the basic basic settings. 
+The required dependencies are Isambert packages [texapi](https://ctan.org/pkg/texapi), [YaX](https://ctan.org/pkg/yax) and [Gates](https://ctan.org/pkg/gates), as stated in `DEPENDS.txt`.
+
+You may find an example of usage in the `blottest.[tex|pdf]` files, and some basic documentation in `blopentype.md`.
 
 # Bugs and caveats
 
-The macros are still very scarcely documented; that may be fixed some day.
+The macros are still barely documented, and massively keep the names of their parent (`PiTeX`) package; that may be fixed some day.
+
+The font database is loaded at `$HOME/texmf/luatex/foundry/readable.txt`; it is not updated automatically after installing new fonts: you have to edit it manually, or else delete/rename(backup) it and rerun LuaTeX to rebuild it.
+
+The character table for each typeface is stored in the `luatex/foundry` directory as a flat `lua` file; it would be nice to have it compiled as a `luac` file to save some space.
 
 Good luck, and happy LuaTeXing
 
 # Authors 
-Paul Isambert (massively) and Luis Rivera 
 
-December 24, 2022
+Version 0.0 (C) 2022 Paul Isambert (massively) and Luis Rivera (minor surgeon; or rather: kludger).
+
+LaTeX Project Public License, LPPL Version 1.3c 2008-05-04 or MIT License
+
+December 28, 2022

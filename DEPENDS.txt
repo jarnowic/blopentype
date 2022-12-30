@@ -1,0 +1,4 @@
+# Basic LuaTeX OpenType handler dependencies
+texapi
+yax
+gates
