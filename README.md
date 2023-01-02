@@ -30,7 +30,7 @@ Good luck, and happy LuaTeXing
 
 # Authors 
 
-Version 0.0 (C) 2022 Paul Isambert (massively) and Luis Rivera (minor surgeon; or rather: kludger).
+Version 0.0.0 (C) 2022 Paul Isambert (massively) and Luis Rivera (minor surgeon; or rather: kludger).
 
 LaTeX Project Public License, LPPL Version 1.3c 2008-05-04 or MIT License
 
