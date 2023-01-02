@@ -1,6 +1,6 @@
 # Basic LuaTeX OpenType Handler Minimal User Guide
 
-As for version 0.0 December 2022
+As for version 0.0.0 December 2022
 
 Fonts (fonts.ltm and fonts.lts)
 ==================================
