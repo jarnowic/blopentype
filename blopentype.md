@@ -2,8 +2,8 @@
 
 As of version 0.0.1 May 2023
 
-Fonts (fonts.tex and fonts.lua)
-==================================
+Fonts 
+=====
 
 The fontloader uses gates, but only superficially. They won't be
 documented here.
