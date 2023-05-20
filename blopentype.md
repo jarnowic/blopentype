@@ -2,6 +2,19 @@
 
 As of version 0.0.1 May 2023
 
+Loading the macros
+==================
+
+This is a Plain TeX macro package, so simply type
+
+```
+\input blot
+```
+
+and you are halfway through: there are font parameter defaults, but no font is loaded 
+automatically, since it must depend on your system; so you have to load fonts
+on your own.
+
 Fonts 
 =====
 
