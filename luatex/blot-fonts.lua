@@ -128,7 +128,8 @@ local lfs = get_locals {lfs = "dir isdir isfile mkdir", kpse = "expand_var show_
 
 -- Returns anything after the last dot, i.e. an extension.
 function lfs.extension (s)
-  return str.lower(str.match(s, "%.([^%.]*)$"))
+--  return str.lower(str.match(s, "%.([^%.]*)$"))
+  return str.match(s, "%.([^%.]*)$")
 end
 
 local extensions = {
@@ -175,7 +176,7 @@ end
 -- directories happens with kpse). Also puts everything to lowercase.
 function lfs.smooth_file (f)
   f = str.gsub(f, "/.-/%.%./", "/")
-  f = str.gsub(f, "^%a", str.lower)
+--  f = str.gsub(f, "^%a", str.lower)
   return f
 end
 -- /lfs
@@ -220,7 +221,7 @@ local normal_names = {}
 for _, name in ipairs(settings.normal) do
   normal_names[name] = true
 end
-local local_path   = lfs.expand_var("$TEXMFHOME")
+local local_path   = lfs.expand_var("$TEXMFHOME")--:gsub(":",";")
 local foundry_path = lfs.ensure_dir (local_path, "tex", "luatex", "foundry")
 -- local local_path   = lfs.expand_var("$TEXMFHOME")
 -- local foundry_path = lfs.ensure_dir (local_path, "fonts", "truetype", "public", "gfs")
@@ -251,6 +252,11 @@ local function extract_font (file, names)
     subname = name
   else
     fi = fl.open(file)
+    -- blot-fonts.lua:257: attempt to index a nil value (local 'fi')
+     if not fi then
+        print("Can't open %s", file)
+        return
+	end
   end
   -- Getting the most precise information. Not necessarily the best
   -- solution, but since the user can modify the library, it's not so bad.
@@ -282,6 +288,7 @@ end
 -- only those that arent in the libraries are considered.
 local fonts_done = {}
 local function check_fonts (rep, tb)
+  if lfs.isdir(rep) then
   for f in lfs.dir (rep) do
     if f ~= "." and f ~= ".." then
       f = str.gsub(rep, "/$", "") .. "/" .. f
@@ -307,6 +314,7 @@ local function check_fonts (rep, tb)
         end
       end
     end
+  end
   end
 end
 
@@ -355,6 +363,7 @@ end
 
 -- If there is no library, we create it.
 local font_paths = lfs.show_path("opentype fonts")
+font_paths = str.gsub(font_paths, ":", ";")
 font_paths = str.gsub(font_paths, "\\", "/")
 font_paths = str.gsub(font_paths, "/+", "/")
 font_paths = str.gsub(font_paths, "!!", "")
@@ -398,6 +407,9 @@ local function load_library (lib)
   LIB = str.gsub(LIB, ";%s*;", ";;")
   LIB = str.gsub(LIB, ";+", ";")
   LIB = str.gsub(LIB, "^;", "")
+  LIB = str.gsub(LIB, ":%s*:", "::")
+  LIB = str.gsub(LIB, ":+", ":")
+  LIB = str.gsub(LIB, "^:", "")
   LIB = str.gsub(LIB, "%s+", " ")
 
   LIB = lp.match(explode_semicolon, LIB)
