@@ -128,8 +128,8 @@ local lfs = get_locals {lfs = "dir isdir isfile mkdir", kpse = "expand_var show_
 
 -- Returns anything after the last dot, i.e. an extension.
 function lfs.extension (s)
---  return str.lower(str.match(s, "%.([^%.]*)$"))
-  return str.match(s, "%.([^%.]*)$")
+  return str.lower(str.match(s, "%.([^%.]*)$"))
+--  return str.match(s, "%.([^%.]*)$")
 end
 
 local extensions = {
@@ -176,7 +176,7 @@ end
 -- directories happens with kpse). Also puts everything to lowercase.
 function lfs.smooth_file (f)
   f = str.gsub(f, "/.-/%.%./", "/")
---  f = str.gsub(f, "^%a", str.lower)
+  f = str.gsub(f, "^%a", str.lower)
   return f
 end
 -- /lfs
@@ -245,7 +245,8 @@ local function extract_font (file, names)
         fi = fl.open
       end
       if not fi then
-        fl.error("Can't open %s", file)
+--        fl.error("Can't open %s", file)
+        fl.error("\nCannot open file", file)
         return
       end
     end
@@ -254,7 +255,7 @@ local function extract_font (file, names)
     fi = fl.open(file)
     -- blot-fonts.lua:257: attempt to index a nil value (local 'fi')
      if not fi then
-        print("Can't open %s", file)
+        print("\nCannot open file", file)
         return
 	end
   end
