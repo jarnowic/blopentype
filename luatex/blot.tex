@@ -1,10 +1,11 @@
 % blopentype: a basic luatex open type loader
 %
 % some (most) pitex macros still in place.- 30.12.2022
+% check history after 
 % 
 % User interface
 %
-\message{This is blopentype, v0.0.1 May 2023}
+\message{This is blopentype, v0.0.2 June 2023}
 
 \input luatex85.sty % deprecated 30.12.2022
 \input yax % which itself \input's texapi
@@ -252,3 +253,8 @@
 %
 %
 % Date: November 2011.
+% 
+% --- blopentype history
+% 
+% 28-06-2023 fixed bug in blot-fonts.lua which affected nix systems. 
+%            thanks to david.carlisle for useful patch.
