@@ -22,17 +22,17 @@ You may find an example of usage in the `blottest.[tex|pdf]` files, and some bas
 
 The macros are still barely documented, and massively keep the names of their parent (`PiTeX`) package; that may be fixed some day.
 
-The font database is stored at `$HOME/texmf/luatex/foundry/readable.txt`.
-It is not updated automatically after installing new fonts: you have to edit it, or else delete/rename(backup) the database by hand, it and rerun LuaTeX to rebuild it.
+The font database is stored at `$TEXMFLOCAL/texmf/luatex/blotfonts/readable.txt`.
+It is updated automatically after installing *and using* new fonts, but you may edit it, or else delete/rename(backup) the database by hand, and rerun LuaTeX to rebuild it.
 
-The character table for each typeface is stored in the `luatex/foundry` directory as a flat `lua` file; it would be nice to have it compiled as a `luac` file to save some space, some day.
+The character table for each typeface is stored in the `luatex/blotfonts` directory as a flat `lua` file; it would be nice to have it compiled as a `luac/luc` file to save some space, some day.
 
 Good luck, and happy LuaTeXing
 
 # Authors 
 
-Version 0.0.1 (C) 2023 Paul Isambert (massively) and Luis Rivera (minor surgeon; or rather: kludger).
+Version 0.0.2 (C) 2023 Paul Isambert (author) and Luis Rivera (maintainer).
 
 LaTeX Project Public License, LPPL Version 1.3c 2008-05-04 or MIT License
 
-May 20, 2023
+June 29, 2023

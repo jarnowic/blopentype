@@ -221,8 +221,8 @@ local normal_names = {}
 for _, name in ipairs(settings.normal) do
   normal_names[name] = true
 end
-local local_path   = lfs.expand_var("$TEXMFHOME")--:gsub(":",";")
-local foundry_path = lfs.ensure_dir (local_path, "tex", "luatex", "foundry")
+local local_path   = lfs.expand_var("$TEXMFLOCAL")--:gsub(":",";")
+local foundry_path = lfs.ensure_dir (local_path, "tex", "luatex", "blotfonts")
 -- local local_path   = lfs.expand_var("$TEXMFHOME")
 -- local foundry_path = lfs.ensure_dir (local_path, "fonts", "truetype", "public", "gfs")
 local library_file = foundry_path .. "/" .. "readable.txt"
