@@ -5,7 +5,7 @@
 % 
 % User interface
 %
-\message{This is blopentype, v0.0.2 June 2023}
+\message{This is blopentype, v0.0.3 September 2023}
 
 \input luatex85.sty % deprecated 30.12.2022
 \input yax % which itself \input's texapi
@@ -212,7 +212,7 @@
 \endinput
 %
 % These are leftovers from Isambert's code: they'll be removed as 
-% documentation improved.- 30.12.2022
+% documentation improves.- 30.12.2022
 %
 % This is piTeX, a set of macros I (Paul Isambert) use to
 % typeset documentations for my packages (that's why it is
@@ -258,3 +258,6 @@
 % 
 % 28-06-2023 fixed bug in blot-fonts.lua which affected nix systems. 
 %            thanks to david.carlisle for useful patch.
+% 02-08-2023 fixed bug in blot-fonts.lua: failure on empty file extension among font files. 
+%            thanks to david.carlisle for useful patch.
+%

@@ -128,7 +128,7 @@ local lfs = get_locals {lfs = "dir isdir isfile mkdir", kpse = "expand_var show_
 
 -- Returns anything after the last dot, i.e. an extension.
 function lfs.extension (s)
-  return str.lower(str.match(s, "%.([^%.]*)$"))
+  return str.lower(str.match(s, "%.([^%.]*)$") or "")
 --  return str.match(s, "%.([^%.]*)$")
 end
 
@@ -1224,3 +1224,11 @@ local function load_font (name, size, id, done)
 end
 
 callback.register("define_font", load_font)
+
+--[[
+History
+0.0.0 First release
+0.0.1 Bugfix
+0.0.2 Bugfix on font path search
+0.0.3 2023-09-02 Bugfix on font path search: empty file extension among font files
+--]]
