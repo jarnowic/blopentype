@@ -129,7 +129,7 @@ local lfs = get_locals {lfs = "dir isdir isfile mkdir", kpse = "expand_var show_
 -- Returns anything after the last dot, i.e. an extension.
 function lfs.extension (s)
   return str.lower(str.match(s, "%.([^%.]*)$") or "")
---  return str.match(s, "%.([^%.]*)$")
+--  return str.match(s, "%.([^%.]*)$") -- bugfix: dpc for empty field in file extension 230902
 end
 
 local extensions = {
@@ -221,9 +221,9 @@ local normal_names = {}
 for _, name in ipairs(settings.normal) do
   normal_names[name] = true
 end
-local local_path   = lfs.expand_var("$TEXMFLOCAL")--:gsub(":",";")
+local local_path   = lfs.expand_var("$TEXMFLOCAL") 
+-- local local_path   = lfs.expand_var("$TEXMFHOME") -- :gsub(":",";") -- bugfix dpc: no path search gsub 0.0.2
 local foundry_path = lfs.ensure_dir (local_path, "tex", "luatex", "blotfonts")
--- local local_path   = lfs.expand_var("$TEXMFHOME")
 -- local foundry_path = lfs.ensure_dir (local_path, "fonts", "truetype", "public", "gfs")
 local library_file = foundry_path .. "/" .. "readable.txt"
 -- local library_file = "c:/texlive/texmf-local/tex/plain/pitex/readable.txt"
@@ -578,6 +578,8 @@ end
 -- with such a name, so if there's an "f f" ligature in a font, no matter its name, "ff.lig"
 -- will point to it.
 local function ligature (comp, tb, phantoms)
+  if #tb == 0 then -- fast kludge to evade empty tables. jlrn 231207
+    else
   local i = str.gsub(comp[1], "%.lig$", "") .. comp[2] .. ".lig"
   phantoms[i] = true
   tab.insert(tb.all_ligs, i)
@@ -589,6 +591,7 @@ local function ligature (comp, tb, phantoms)
     tab.insert(comp, 1, i)
     ligature(comp, tb, phantoms)
   end
+  end -- endkludge 231209
 end
 
 local function get_lookups (t, lookup_table)
@@ -1208,14 +1211,17 @@ local function load_font (name, size, id, done)
       loaded_font = apply_size(loaded_font, size, features.letterspacing, features.space)
       loaded_font = activate_lookups(loaded_font, features, features.script, features.lang)
 
+      if #loaded_font == 0 then  -- kludge for missing families/series, etc. 231207. jlrn.
+        else -- kludge 231207
       loaded_font.name = loaded_font.name .. id
-      loaded_font.fullname = loaded_font.fullname .. id
+      loaded_font.fullname = loaded_font.fullname .. id 
       local embedding = features.embedding or "subset"
       if embedding ~= "no" and embedding ~= "subset" and embedding ~= "full" then
         wri.error("Invalid value `%s' for the `embedding' feature. Value should be `no', `subset' or `full'.", embedding)
         embedding = "subset"
       end
       loaded_font.embedding = embedding
+      end -- endkludge 231207
     else
       loaded_font = fl.read_tfm(lfs.find_file("cmr10", "tfm"), size)
     end
@@ -1229,6 +1235,8 @@ callback.register("define_font", load_font)
 History
 0.0.0 First release
 0.0.1 Bugfix
-0.0.2 Bugfix on font path search
-0.0.3 2023-09-02 Bugfix on font path search: empty file extension among font files
+0.0.2 2023-06-28 Bugfix on font path search: removed gsubs for Nix&Win
+0.0.3 2023-09-02 Bugfix on font path search: empty file extensions in font paths
+0.0.4 2023-12-07 Two kludges: one for missing ligatures, another for missing families/series; 
+      some cleanup and housekeeping.
 --]]

@@ -6,7 +6,7 @@
 % 
 % User interface
 %
-\message{This is blopentype, v0.0.3 September 2023}
+\message{This is blopentype, v0.0.4 December 2023}
 
 \input luatex85.sty % deprecated 30.12.2022
 \input yax % which itself \input's texapi
@@ -211,54 +211,57 @@
 \restorecatcodes
 
 \endinput
-%
-% These are leftovers from Isambert's code: they'll be removed as 
-% documentation improves.- 30.12.2022
-%
-% This is piTeX, a set of macros I (Paul Isambert) use to
-% typeset documentations for my packages (that's why it is
-% archived on CTAN).
-%
-% Perhaps in the future, when this achieves some kind of
-% format-like completude, it'll be publicly announced. In the
-% meanwhile, a documentation exists (pitex-doc.pdf, also readable
-% in a text editor as pitex-doc.txt).
-%
-%
-% You can of course use those macros, but you are on your
-% own, and the files will probably be modified without announcement.
-% The file is supposed to be \input on plain TeX with LuaTeX, at least v.0.6.
-%
-%
-% The files needed are:
-%
-% texapi.tex              (an independent package for programming)
-% yax.tex                 (an independent package for key=value interface)
-% gates.tex and gates.lua (an independant package for overall architecture)
-% navigator.tex           (an independant package for PDF features)
-% lua.ptx and base.ptxlua (Lua side)
-% files.ptx               (file management)
-% fonts.ptx, fonts.ptxlua and foundry-settings.lua
-%                         (fonts, should be independant some day; actually
-%                         fonts.ptxlua can be used independantly, but there is
-%                         no doc)
-% sections.ptx            (sectionning commands)
-% blocks.ptx              (text blocks)
-% references.ptx          (labels and references)
-% verbatim.ptx            (typesetting verbatim)
-% inserts.ptx             (footnotes and figures, a mess)
-% output.ptx              (output routine)
-%
-% The file i-pitex.lua is needed only to typeset the documentation with the
-% Interpreter package.
-%
-%
-% Date: November 2011.
-% 
-% --- blopentype history
-% 
-% 28-06-2023 fixed bug in blot-fonts.lua which affected nix systems. 
-%            thanks to david.carlisle for useful patch.
-% 02-08-2023 fixed bug in blot-fonts.lua: failure on empty file extension among font files. 
-%            thanks to david.carlisle for useful patch.
-%
+
+These notes are leftovers from Isambert's code: they'll be removed as 
+documentation improves.- 30.12.2022
+
+This is piTeX, a set of macros I (Paul Isambert) use to
+typeset documentations for my packages (that's why it is
+archived on CTAN).
+
+Perhaps in the future, when this achieves some kind of
+format-like completude, it'll be publicly announced. In the
+meanwhile, a documentation exists (pitex-doc.pdf, also readable
+in a text editor as pitex-doc.txt).
+
+
+You can of course use those macros, but you are on your
+own, and the files will probably be modified without announcement.
+The file is supposed to be \input on plain TeX with LuaTeX, at least v.0.6.
+
+
+The files needed are:
+
+texapi.tex              (an independent package for programming)
+yax.tex                 (an independent package for key=value interface)
+gates.tex and gates.lua (an independant package for overall architecture)
+navigator.tex           (an independant package for PDF features)
+lua.ptx and base.ptxlua (Lua side)
+files.ptx               (file management)
+fonts.ptx, fonts.ptxlua and foundry-settings.lua
+                        (fonts, should be independant some day; actually
+                        fonts.ptxlua can be used independantly, but there is
+                        no doc)
+sections.ptx            (sectionning commands)
+blocks.ptx              (text blocks)
+references.ptx          (labels and references)
+verbatim.ptx            (typesetting verbatim)
+inserts.ptx             (footnotes and figures, a mess)
+output.ptx              (output routine)
+
+The file i-pitex.lua is needed only to typeset the documentation with the
+Interpreter package.
+
+
+Date: November 2011.
+
+--- blopentype history
+
+28-06-2023 fixed bug in blot-fonts.lua which affected nix systems. 
+           thanks to david.carlisle for useful patch.
+02-08-2023 fixed bug in blot-fonts.lua: 
+           failure on files with empty extensions in font directories. 
+           thanks to david.carlisle for useful patch.
+07-09-2023 fixed bugs in blot-fonts.lua: 
+           - quick kludge to avoid empty ligature tables
+           - quick kludge to avoid missing font families/series: fallback to default font
