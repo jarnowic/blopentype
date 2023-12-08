@@ -31,8 +31,6 @@ Good luck, and happy LuaTeXing
 
 # Authors 
 
-Version 0.0.3 (C) 2022-2023 Paul Isambert (author) and Luis Rivera (maintainer).
+(C) 2022-2023 Paul Isambert (author) and Luis Rivera (maintainer).
 
 LaTeX Project Public License, LPPL Version 1.3c 2008-05-04 or MIT License
-
-September 3, 2023.
