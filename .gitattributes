@@ -2,3 +2,4 @@
 *.tex text
 *.lua text
 * text eol=lf
+*.pdf binary
