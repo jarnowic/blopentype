@@ -20,9 +20,9 @@ You may find an example of usage in the `blottest.[tex|pdf]` files, and some bas
 
 # Bugs and caveats
 
-On LuaTeX <0.17 a security hole allowed the package to write on `$TEXMFLOCAL`, so the program actually worked almost by accident. Now the hole is plugged, so the package must be run with the `--shell-escape` flag enabled, otherwise it will not write the fontname `readable.txt` database, or the individual `*.lua` font metrics. This procedure is only required to regenerate the database or to add new font metrics on the system; once these files are in the `blotfonts` directory in `$TEXMFLOCAL` the flag is no longer required.
+On LuaTeX <0.17 a security hole allowed the package to write on `$TEXMFLOCAL` without explicit permissions, so the program actually worked almost by accident. Now that the hole has been plugged, the package must be run with the `--shell-escape` flag enabled, otherwise it will not write the required, global `readable.txt` database file, or the individual `*.lua` font metrics files for each font. This procedure is only required to generate or update the database or to add new font family metrics on the system; once these files are in the `blotfonts` directory in `$TEXMFLOCAL` the flag is no longer required.
 
-This update on the LuaTeX engine now requires then a font database generating/updating script, which is top in the to do list now. Meanwhile, the workaround described should work.
+This update on the LuaTeX engine now requires a font database generating/updating script, which is top in the to do list now. Meanwhile, the workaround described above should work.
 
 The macros are still barely documented, and massively keep the names of their parent (`PiTeX`) package; that may be fixed some day.
 
